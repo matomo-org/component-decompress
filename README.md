@@ -1,8 +1,8 @@
 # Piwik/Decompress
 
-Library providing several adapters to decompress files.
+Component providing several adapters to decompress files.
 
-Supports the following compression formats:
+It supports the following compression formats:
 
 - Zip
 - Gzip
@@ -37,6 +37,6 @@ $extractor = new \Piwik\Decompress\Gzip('file.gz');
 $extractedFiles = $extractor->extract('some/directory');
 
 if ($extractedFiles === 0) {
-    $error = $extractor->errorInfo();
+    echo $extractor->errorInfo();
 }
 ```
