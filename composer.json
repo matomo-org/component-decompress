@@ -1,6 +1,7 @@
 {
     "name": "piwik/decompress",
     "type": "library",
+    "license": "LGPL-3.0",
     "autoload": {
         "psr-4": {
             "Piwik\\Decompress\\": "src/"

@@ -40,3 +40,7 @@ if ($extractedFiles === 0) {
     echo $extractor->errorInfo();
 }
 ```
+
+## License
+
+The Decompress component is released under the [LGPL v3.0](http://choosealicense.com/licenses/lgpl-3.0/).
