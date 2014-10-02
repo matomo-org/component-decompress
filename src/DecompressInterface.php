@@ -4,34 +4,33 @@
  *
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- *
  */
 
 namespace Piwik\Decompress;
 
 /**
- * Unzip interface
- *
+ * Abstract a class that decompresses files.
  */
-interface UncompressInterface
+interface DecompressInterface
 {
     /**
      * Constructor
      *
-     * @param string $filename Name of the .zip archive
+     * @param string $filename Name of the archive
      */
     public function __construct($filename);
 
     /**
-     * Extract files from archive to target directory
+     * Extract files from the archive to the target directory
      *
      * @param string $pathExtracted Absolute path of target directory
-     * @return mixed  Array of filenames if successful; or 0 if an error occurred
+     *
+     * @return mixed Array of file names if successful; or 0 if an error occurred
      */
     public function extract($pathExtracted);
 
     /**
-     * Get error status string for the latest error
+     * Get error description for the latest error
      *
      * @return string
      */

@@ -4,7 +4,6 @@
  *
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- *
  */
 
 namespace Piwik\Decompress;
@@ -13,9 +12,8 @@ use Exception;
 
 /**
  * Unzip wrapper around ZipArchive
- *
  */
-class ZipArchive implements UncompressInterface
+class ZipArchive implements DecompressInterface
 {
     /**
      * @var \ZipArchive

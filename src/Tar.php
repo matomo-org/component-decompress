@@ -4,7 +4,6 @@
  *
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- *
  */
 
 namespace Piwik\Decompress;
@@ -13,9 +12,8 @@ use Archive_Tar;
 
 /**
  * Unzip implementation for Archive_Tar PEAR lib.
- *
  */
-class Tar implements UncompressInterface
+class Tar implements DecompressInterface
 {
     /**
      * Archive_Tar instance.

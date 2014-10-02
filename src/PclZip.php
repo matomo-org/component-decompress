@@ -4,16 +4,14 @@
  *
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- *
  */
 
 namespace Piwik\Decompress;
 
 /**
  * Unzip wrapper around PclZip
- *
  */
-class PclZip implements UncompressInterface
+class PclZip implements DecompressInterface
 {
     /**
      * @var PclZip

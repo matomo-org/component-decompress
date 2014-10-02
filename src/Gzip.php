@@ -4,7 +4,6 @@
  *
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- *
  */
 
 namespace Piwik\Decompress;
@@ -13,7 +12,7 @@ namespace Piwik\Decompress;
  * Unzip implementation for .gz files.
  *
  */
-class Gzip implements UncompressInterface
+class Gzip implements DecompressInterface
 {
     /**
      * Name of .gz file.
