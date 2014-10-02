@@ -15,9 +15,8 @@ class GzipTest extends BaseTest
     public function testGzipFile()
     {
         $extractFile = $this->tempDirectory . 'testgz.txt';
-        $filename = $this->fixtureDirectory . '/test.gz';
 
-        $unzip = new Gzip($filename);
+        $unzip = new Gzip($this->fixtureDirectory . '/test.gz');
         $res = $unzip->extract($extractFile);
         $this->assertTrue($res);
 
