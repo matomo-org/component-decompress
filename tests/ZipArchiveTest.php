@@ -12,20 +12,27 @@ use Piwik\Decompress\ZipArchive;
 
 class ZipArchiveTest extends BaseTest
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        if (! class_exists('ZipArchive')) {
+            $this->markTestSkipped('The PHP zip extension is not installed, skipping ZipArchive tests');
+        }
+    }
+
     public function testRelativePath()
     {
         $test = 'relative';
         $filename = $this->fixtureDirectory . $test . '.zip';
 
-        if (class_exists('ZipArchive', false)) {
-            $unzip = new ZipArchive($filename);
-            $res = $unzip->extract($this->tempDirectory);
-            $this->assertEquals(1, count($res));
-            $this->assertFileExists($this->tempDirectory . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');
-            unlink($this->tempDirectory . $test . '.txt');
-        }
+        $unzip = new ZipArchive($filename);
+        $res = $unzip->extract($this->tempDirectory);
+        $this->assertEquals(1, count($res));
+        $this->assertFileExists($this->tempDirectory . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');
+        unlink($this->tempDirectory . $test . '.txt');
     }
 
     public function testRelativePathAttack()
@@ -33,16 +40,14 @@ class ZipArchiveTest extends BaseTest
         $test = 'zaatt';
         $filename = $this->fixtureDirectory . $test . '.zip';
 
-        if (class_exists('ZipArchive', false)) {
-            $unzip = new ZipArchive($filename);
-            $res = $unzip->extract($this->tempDirectory);
-            $this->assertEquals(0, $res);
-            $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
-            $this->assertFileNotExists($this->tempDirectory . '../' . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/../' . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/../../' . $test . '.txt');
-        }
+        $unzip = new ZipArchive($filename);
+        $res = $unzip->extract($this->tempDirectory);
+        $this->assertEquals(0, $res);
+        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
+        $this->assertFileNotExists($this->tempDirectory . '../' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../../' . $test . '.txt');
     }
 
     public function testAbsolutePathAttack()
@@ -50,13 +55,11 @@ class ZipArchiveTest extends BaseTest
         $test = 'zaabs';
         $filename = $this->fixtureDirectory . $test . '.zip';
 
-        if (class_exists('ZipArchive', false)) {
-            $unzip = new ZipArchive($filename);
-            $res = $unzip->extract($this->tempDirectory);
-            $this->assertEquals(0, $res);
-            $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
-            $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
-        }
+        $unzip = new ZipArchive($filename);
+        $res = $unzip->extract($this->tempDirectory);
+        $this->assertEquals(0, $res);
+        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
     }
 
     public function testUnzipErrorInfo()
@@ -76,15 +79,12 @@ class ZipArchiveTest extends BaseTest
         $this->assertEquals(0, $res);
     }
 
+    /**
+     * @expectedException \Exception
+     * @expectedExceptionMessage Error opening
+     */
     public function testUnzipNotExistingFile()
     {
-        $filename = $this->fixtureDirectory . '/NotExisting.zip';
-
-        try {
-            new ZipArchive($filename);
-        } catch (\Exception $e) {
-            return;
-        }
-        $this->fail('Exception not raised');
+        new ZipArchive($this->fixtureDirectory . '/NotExisting.zip');
     }
 }
