@@ -2,6 +2,9 @@
 
 Component providing several adapters to decompress files.
 
+[![Build Status](https://travis-ci.org/piwik/component-decompress.svg?branch=master)](https://travis-ci.org/piwik/component-decompress)
+[![Coverage Status](https://coveralls.io/repos/piwik/component-decompress/badge.png?branch=master)](https://coveralls.io/r/piwik/component-decompress?branch=master)
+
 It supports the following compression formats:
 
 - Zip
