@@ -9,7 +9,7 @@
 namespace Piwik\Decompress;
 
 /**
- * Abstract a class that decompresses files.
+ * Interface of a class that can decompress files.
  */
 interface DecompressInterface
 {

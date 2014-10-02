@@ -10,7 +10,6 @@ namespace Piwik\Decompress;
 
 /**
  * Unzip implementation for .gz files.
- *
  */
 class Gzip implements DecompressInterface
 {
