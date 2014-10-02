@@ -7,7 +7,7 @@
  *
  */
 
-namespace Piwik\Unzip;
+namespace Piwik\Decompress;
 
 /**
  * Unzip interface

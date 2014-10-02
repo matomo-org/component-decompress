@@ -6,12 +6,8 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Unzip;
 
-/**
- * @see libs/PclZip
- */
-require_once PIWIK_INCLUDE_PATH . '/libs/PclZip/pclzip.lib.php';
+namespace Piwik\Decompress;
 
 /**
  * Unzip wrapper around PclZip

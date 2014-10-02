@@ -6,14 +6,10 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Unzip;
+
+namespace Piwik\Decompress;
 
 use Archive_Tar;
-
-/**
- * @see libs/Archive_Tar
- */
-require_once PIWIK_INCLUDE_PATH . '/libs/Archive_Tar/Tar.php';
 
 /**
  * Unzip implementation for Archive_Tar PEAR lib.
