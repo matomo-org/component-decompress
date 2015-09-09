@@ -1717,7 +1717,7 @@ class PclZip
           $v_function_name = $p_options_list[$i + 1];
 
           // ----- Check that the value is a valid existing function
-          if ((is_string($v_function_name) && !function_exists($v_function_name)) || !is_callable($v_function_name)) {
+          if ((is_string($v_function_name) && !function_exists($v_function_name)) && !is_callable($v_function_name)) {
             // ----- Error log
             PclZip::privErrorLog(PCLZIP_ERR_INVALID_OPTION_VALUE, "Function '" . $v_function_name . "()' is not an existing function for option '" . PclZipUtilOptionText($p_options_list[$i]) . "'");
 
