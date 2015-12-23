@@ -15,7 +15,7 @@ matrix:
 sudo: false
 
 before_script:
-  - composer require satooshi/php-coveralls:dev-master --dev --no-progress --prefer-source
+  - composer require satooshi/php-coveralls:~1.0.0 --dev --no-progress --prefer-source
 
 script:
   - mkdir -p build/logs
