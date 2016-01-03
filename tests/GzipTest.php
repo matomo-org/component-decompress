@@ -22,4 +22,15 @@ class GzipTest extends BaseTest
 
         $this->assertFileContentsEquals('TESTSTRING', $extractFile);
     }
+
+    public function testUnzipInvalidFile2()
+    {
+        $filename = $this->fixtureDirectory . '/NotExisting.zip';
+
+        $unzip = new Gzip($filename);
+        $res   = $unzip->extract($this->tempDirectory);
+        $this->assertEquals(0, $res);
+
+        $this->assertEquals('gzopen failed', $unzip->errorInfo());
+    }
 }
