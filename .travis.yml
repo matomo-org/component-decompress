@@ -13,4 +13,5 @@ php:
 sudo: false
 
 before_script:
+  - composer config -g -- disable-tls true
   - composer install
