@@ -7,20 +7,8 @@ php:
   - 5.5
   - 5.6
   - 7.0
-  - hhvm
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 sudo: false
 
 before_script:
-  - composer require satooshi/php-coveralls:~1.0.0 --dev --no-progress --prefer-source
-
-script:
-  - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
-
-after_script:
-  - php vendor/bin/coveralls -v
+  - composer install --dev --prefer-source
