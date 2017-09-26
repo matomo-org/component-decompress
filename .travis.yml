@@ -13,7 +13,7 @@ dist: trusty
 
 matrix:
   include:
-    - php: 5.3.3
+    - php: 5.3
       dist: precise
 
 before_script:
