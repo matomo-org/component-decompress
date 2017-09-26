@@ -17,4 +17,6 @@ matrix:
       dist: precise
 
 before_script:
+  - '[[ "$TRAVIS_PHP_VERSION" == 5.3* ]] && composer config -g -- disable-tls true || true'
+  - '[[ "$TRAVIS_PHP_VERSION" == 5.3* ]] && composer config -g -- secure-http false || true'
   - composer install
