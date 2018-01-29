@@ -1,16 +1,16 @@
 {
-    "name": "piwik/decompress",
+    "name": "matomo/decompress",
     "type": "library",
     "license": "LGPL-3.0",
     "autoload": {
         "psr-4": {
-            "Piwik\\Decompress\\": "src/"
+            "Matomo\\Decompress\\": "src/"
         },
         "classmap": ["libs/PclZip"]
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Piwik\\Decompress\\": "tests/"
+            "Tests\\Matomo\\Decompress\\": "tests/"
         }
     },
     "require": {

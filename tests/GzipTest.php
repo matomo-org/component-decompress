@@ -1,14 +1,14 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Matomo - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL v3 or later
  */
 
-namespace Tests\Piwik\Decompress;
+namespace Tests\Matomo\Decompress;
 
-use Piwik\Decompress\Gzip;
+use Matomo\Decompress\Gzip;
 
 class GzipTest extends BaseTest
 {

@@ -1,14 +1,14 @@
 <?php
 /**
- * Piwik - free/libre analytics platform
+ * Matomo - free/libre analytics platform
  *
- * @link http://piwik.org
+ * @link https://matomo.org
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL v3 or later
  */
 
-namespace Tests\Piwik\Decompress;
+namespace Tests\Matomo\Decompress;
 
-use Piwik\Decompress\Tar;
+use Matomo\Decompress\Tar;
 
 class TarTest extends BaseTest
 {
