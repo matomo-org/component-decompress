@@ -1,9 +1,9 @@
-# Piwik/Decompress
+# Matomo/Decompress
 
 Component providing several adapters to decompress files.
 
-[![Build Status](https://travis-ci.org/piwik/component-decompress.svg?branch=master)](https://travis-ci.org/piwik/component-decompress)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/piwik/component-decompress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/piwik/component-decompress/?branch=master)
+[![Build Status](https://travis-ci.org/matomo-org/component-decompress.svg?branch=master)](https://travis-ci.org/matomo-org/component-decompress)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/matomo-org/component-decompress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/matomo-org/component-decompress/?branch=master)
 
 It supports the following compression formats:
 
@@ -25,17 +25,17 @@ With Composer:
 ```json
 {
     "require": {
-        "piwik/decompress": "*"
+        "matomo/decompress": "*"
     }
 }
 ```
 
 ## Usage
 
-All adapters have the same API as they implement `Piwik\Decompress\DecompressInterface`:
+All adapters have the same API as they implement `Matomo\Decompress\DecompressInterface`:
 
 ```php
-$extractor = new \Piwik\Decompress\Gzip('file.gz');
+$extractor = new \Matomo\Decompress\Gzip('file.gz');
 
 $extractedFiles = $extractor->extract('some/directory');
 
