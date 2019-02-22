@@ -3,7 +3,6 @@
 Component providing several adapters to decompress files.
 
 [![Build Status](https://travis-ci.org/matomo-org/component-decompress.svg?branch=master)](https://travis-ci.org/matomo-org/component-decompress)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/matomo-org/component-decompress/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/matomo-org/component-decompress/?branch=master)
 
 It supports the following compression formats:
 
