@@ -12,7 +12,7 @@ use Matomo\Decompress\ZipArchive;
 
 class ZipArchiveTest extends BaseTest
 {
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
@@ -28,7 +28,7 @@ class ZipArchiveTest extends BaseTest
 
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($this->tempDirectory);
-        $this->assertEquals(1, count($res));
+        $this->assertCount(1, $res);
         $this->assertFileExists($this->tempDirectory . $test . '.txt');
         $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
         $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');

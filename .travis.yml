@@ -7,6 +7,7 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
 
 sudo: false
 dist: trusty
@@ -17,6 +18,5 @@ matrix:
       dist: precise
 
 before_script:
-  - '[[ "$TRAVIS_PHP_VERSION" == 5.3* ]] && composer config -g -- disable-tls true || true'
-  - '[[ "$TRAVIS_PHP_VERSION" == 5.3* ]] && composer config -g -- secure-http false || true'
   - composer install
+  - vendor/bin/phpunit
