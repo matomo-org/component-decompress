@@ -19,7 +19,7 @@ class PclZipTest extends BaseTest
 
         $unzip = new PclZip($filename);
         $res = $unzip->extract($this->tempDirectory);
-        $this->assertEquals(1, count($res));
+        $this->assertCount(1, $res);
         $this->assertFileExists($this->tempDirectory . $test . '.txt');
         $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
         $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');

@@ -8,12 +8,14 @@
 
 namespace Tests\Matomo\Decompress;
 
-abstract class BaseTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class BaseTest extends TestCase
 {
     protected $fixtureDirectory;
     protected $tempDirectory;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
@@ -25,7 +27,7 @@ abstract class BaseTest extends \PHPUnit_Framework_TestCase
 
     protected function assertFileContentsEquals($expectedContent, $path)
     {
-        $this->assertTrue(file_exists($path));
+        $this->assertFileExists($path);
 
         $fd = fopen($path, 'rb');
         $actualContent = fread($fd, filesize($path));
