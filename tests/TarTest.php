@@ -31,6 +31,22 @@ class TarTest extends BaseTest
         $this->assertFileContentsEquals('MORETESTDATA', $this->tempDirectory . 'tardir/tarout2.txt');
     }
 
+    public function testTarBzipFile()
+    {
+        $filename = $this->fixtureDirectory . '/test.tar.bz2';
+
+        $unzip = new Tar($filename, 'bz2');
+        $res = $unzip->extract($this->tempDirectory);
+        $this->assertTrue($res);
+
+        $content = $unzip->listContent();
+
+        $this->assertCount(1, $content);
+        $this->assertEquals('testbz.txt', $content[0]['filename']);
+
+        $this->assertFileContentsEquals('TESTSTRING', $this->tempDirectory . 'testbz.txt');
+    }
+
     public function testUnzipInvalidFile2()
     {
         $filename = $this->fixtureDirectory . '/NotExisting.zip';
