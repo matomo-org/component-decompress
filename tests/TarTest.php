@@ -56,5 +56,6 @@ class TarTest extends BaseTest
         $this->assertEquals(0, $res);
 
         $this->assertContains('Unable to open in read mode', $unzip->errorInfo());
+        $this->assertNull($unzip->extractInString($filename));
     }
 }
