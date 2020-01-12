@@ -79,6 +79,16 @@ class ZipArchiveTest extends BaseTest
         $this->assertEquals(0, $res);
     }
 
+    public function testExtractOnNoSlashPathExtracted()
+    {
+        $filename = $this->fixtureDirectory . '/empty.zip';
+        $tempDirectory = '/tmp';
+
+        $unzip = new ZipArchive($filename);
+        $res = $unzip->extract($tempDirectory);
+        $this->assertEquals(0, $res);
+    }
+
     /**
      * @expectedException \Exception
      * @expectedExceptionMessage Error opening
