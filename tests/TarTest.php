@@ -10,7 +10,7 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\Tar;
 
-class TarTest extends BaseTest
+class TarTest extends TestBase
 {
     public function testTarGzFile()
     {
@@ -55,7 +55,7 @@ class TarTest extends BaseTest
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
 
-        $this->assertContains('Unable to open in read mode', $unzip->errorInfo());
+        $this->assertStringContainsString('Unable to open in read mode', $unzip->errorInfo());
         $this->assertNull($unzip->extractInString($filename));
     }
 }

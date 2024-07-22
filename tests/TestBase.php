@@ -10,12 +10,12 @@ namespace Tests\Matomo\Decompress;
 
 use PHPUnit\Framework\TestCase;
 
-abstract class BaseTest extends TestCase
+abstract class TestBase extends TestCase
 {
     protected $fixtureDirectory;
     protected $tempDirectory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

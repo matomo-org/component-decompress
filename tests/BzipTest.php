@@ -10,7 +10,7 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\Bzip;
 
-class BzipTest extends BaseTest
+class BzipTest extends TestBase
 {
     public function testBzipFile()
     {

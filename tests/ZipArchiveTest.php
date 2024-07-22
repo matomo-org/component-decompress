@@ -10,13 +10,13 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\ZipArchive;
 
-class ZipArchiveTest extends BaseTest
+class ZipArchiveTest extends TestBase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
-        if (! class_exists('ZipArchive')) {
+        if (! class_exists(\ZipArchive::class)) {
             $this->markTestSkipped('The PHP zip extension is not installed, skipping ZipArchive tests');
         }
     }
@@ -30,8 +30,8 @@ class ZipArchiveTest extends BaseTest
         $res = $unzip->extract($this->tempDirectory);
         $this->assertCount(1, $res);
         $this->assertFileExists($this->tempDirectory . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/../../tests/' . $test . '.txt');
         unlink($this->tempDirectory . $test . '.txt');
     }
 
@@ -43,11 +43,11 @@ class ZipArchiveTest extends BaseTest
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
-        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
-        $this->assertFileNotExists($this->tempDirectory . '../' . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/../' . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/../../' . $test . '.txt');
+        $this->assertFileDoesNotExist($this->tempDirectory . $test . '.txt');
+        $this->assertFileDoesNotExist($this->tempDirectory . '../' . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/../' . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/../../' . $test . '.txt');
     }
 
     public function testAbsolutePathAttack()
@@ -58,8 +58,8 @@ class ZipArchiveTest extends BaseTest
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
-        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
-        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileDoesNotExist($this->tempDirectory . $test . '.txt');
+        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
     }
 
     public function testUnzipErrorInfo()
@@ -67,7 +67,7 @@ class ZipArchiveTest extends BaseTest
         $filename = $this->fixtureDirectory . '/zaabs.zip';
 
         $unzip = new ZipArchive($filename);
-        $this->assertContains('No error', $unzip->errorInfo());
+        $this->assertStringContainsString('No error', $unzip->errorInfo());
     }
 
     public function testUnzipEmptyFile()
@@ -89,12 +89,11 @@ class ZipArchiveTest extends BaseTest
         $this->assertEquals(0, $res);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Error opening
-     */
     public function testUnzipNotExistingFile()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessageMatches('/^Error opening/');
+
         new ZipArchive($this->fixtureDirectory . '/NotExisting.zip');
     }
 }
