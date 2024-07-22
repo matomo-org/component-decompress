@@ -72,20 +72,30 @@ class ZipArchiveTest extends TestBase
 
     public function testUnzipEmptyFile()
     {
-        $filename = $this->fixtureDirectory . '/empty.zip';
+        $filename = $this->fixtureDirectory . 'empty.zip';
+        // Backup (https://github.com/php/php-src/issues/8781)
+        \copy($filename, $filename . '.original');
 
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($this->tempDirectory);
+        unset($unzip);// Destroy the ref
+        // Restore (https://github.com/php/php-src/issues/8781)
+        \rename($filename . '.original', $filename);
         $this->assertEquals(0, $res);
     }
 
     public function testExtractOnNoSlashPathExtracted()
     {
-        $filename = $this->fixtureDirectory . '/empty.zip';
+        $filename = $this->fixtureDirectory . 'empty.zip';
         $tempDirectory = '/tmp';
+        // Backup (https://github.com/php/php-src/issues/8781)
+        \copy($filename, $filename . '.original');
 
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($tempDirectory);
+        unset($unzip);// Destroy the ref
+        // Restore (https://github.com/php/php-src/issues/8781)
+        \rename($filename . '.original', $filename);
         $this->assertEquals(0, $res);
     }
 
