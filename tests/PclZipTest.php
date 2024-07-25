@@ -10,7 +10,7 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\PclZip;
 
-class PclZipTest extends BaseTest
+class PclZipTest extends TestBase
 {
     public function testRelativePath()
     {
@@ -61,6 +61,6 @@ class PclZipTest extends BaseTest
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
 
-        $this->assertContains('PCLZIP_ERR_MISSING_FILE', $unzip->errorInfo());
+        $this->assertStringContainsString('PCLZIP_ERR_MISSING_FILE', $unzip->errorInfo());
     }
 }

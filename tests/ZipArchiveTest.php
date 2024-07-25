@@ -10,13 +10,13 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\ZipArchive;
 
-class ZipArchiveTest extends BaseTest
+class ZipArchiveTest extends TestBase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
-        if (! class_exists('ZipArchive')) {
+        if (! class_exists(\ZipArchive::class)) {
             $this->markTestSkipped('The PHP zip extension is not installed, skipping ZipArchive tests');
         }
     }
@@ -67,34 +67,43 @@ class ZipArchiveTest extends BaseTest
         $filename = $this->fixtureDirectory . '/zaabs.zip';
 
         $unzip = new ZipArchive($filename);
-        $this->assertContains('No error', $unzip->errorInfo());
+        $this->assertStringContainsString('No error', $unzip->errorInfo());
     }
 
     public function testUnzipEmptyFile()
     {
-        $filename = $this->fixtureDirectory . '/empty.zip';
+        $filename = $this->fixtureDirectory . 'empty.zip';
+        // Backup (https://github.com/php/php-src/issues/8781)
+        \copy($filename, $filename . '.original');
 
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($this->tempDirectory);
+        unset($unzip);// Destroy the ref
+        // Restore (https://github.com/php/php-src/issues/8781)
+        \rename($filename . '.original', $filename);
         $this->assertEquals(0, $res);
     }
 
     public function testExtractOnNoSlashPathExtracted()
     {
-        $filename = $this->fixtureDirectory . '/empty.zip';
+        $filename = $this->fixtureDirectory . 'empty.zip';
         $tempDirectory = '/tmp';
+        // Backup (https://github.com/php/php-src/issues/8781)
+        \copy($filename, $filename . '.original');
 
         $unzip = new ZipArchive($filename);
         $res = $unzip->extract($tempDirectory);
+        unset($unzip);// Destroy the ref
+        // Restore (https://github.com/php/php-src/issues/8781)
+        \rename($filename . '.original', $filename);
         $this->assertEquals(0, $res);
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Error opening
-     */
     public function testUnzipNotExistingFile()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessageMatches('/^Error opening/');
+
         new ZipArchive($this->fixtureDirectory . '/NotExisting.zip');
     }
 }

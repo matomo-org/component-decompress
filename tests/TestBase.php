@@ -10,12 +10,12 @@ namespace Tests\Matomo\Decompress;
 
 use PHPUnit\Framework\TestCase;
 
-abstract class BaseTest extends TestCase
+abstract class TestBase extends TestCase
 {
     protected $fixtureDirectory;
     protected $tempDirectory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -34,5 +34,21 @@ abstract class BaseTest extends TestCase
         fclose($fd);
 
         $this->assertEquals($expectedContent, $actualContent);
+    }
+
+    /**
+     * Asserts that a file does not exist.
+     *
+     * This function is for PHPUnit 8 compatibility
+     * Remove it when PHPUnit 8 is removed and replace with assertFileDoesNotExist
+     */
+    public static function assertFileNotExists(string $filename, string $message = ''): void
+    {
+        if (!method_exists(parent::class, 'assertFileDoesNotExist')) {
+            parent::assertFileNotExists($filename, $message);
+            return;
+        }
+
+        parent::assertFileDoesNotExist($filename, $message);
     }
 }

@@ -10,7 +10,7 @@ namespace Tests\Matomo\Decompress;
 
 use Matomo\Decompress\Gzip;
 
-class GzipTest extends BaseTest
+class GzipTest extends TestBase
 {
     public function testGzipFile()
     {
