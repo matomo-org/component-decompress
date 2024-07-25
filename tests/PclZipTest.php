@@ -21,8 +21,8 @@ class PclZipTest extends TestBase
         $res = $unzip->extract($this->tempDirectory);
         $this->assertCount(1, $res);
         $this->assertFileExists($this->tempDirectory . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/../../tests/' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../../tests/' . $test . '.txt');
         unlink($this->tempDirectory . $test . '.txt');
     }
 
@@ -34,11 +34,11 @@ class PclZipTest extends TestBase
         $unzip = new PclZip($filename);
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
-        $this->assertFileDoesNotExist($this->tempDirectory . $test . '.txt');
-        $this->assertFileDoesNotExist($this->tempDirectory . '../' . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/../' . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/../../' . $test . '.txt');
+        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
+        $this->assertFileNotExists($this->tempDirectory . '../' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../' . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/../../' . $test . '.txt');
     }
 
     public function testAbsolutePathAttack()
@@ -49,8 +49,8 @@ class PclZipTest extends TestBase
         $unzip = new PclZip($filename);
         $res = $unzip->extract($this->tempDirectory);
         $this->assertEquals(0, $res);
-        $this->assertFileDoesNotExist($this->tempDirectory . $test . '.txt');
-        $this->assertFileDoesNotExist(__DIR__ . '/' . $test . '.txt');
+        $this->assertFileNotExists($this->tempDirectory . $test . '.txt');
+        $this->assertFileNotExists(__DIR__ . '/' . $test . '.txt');
     }
 
     public function testUnzipInvalidFile2()

@@ -35,4 +35,20 @@ abstract class TestBase extends TestCase
 
         $this->assertEquals($expectedContent, $actualContent);
     }
+
+    /**
+     * Asserts that a file does not exist.
+     *
+     * This function is for PHPUnit 8 compatibility
+     * Remove it when PHPUnit 8 is removed and replace with assertFileDoesNotExist
+     */
+    public static function assertFileNotExists(string $filename, string $message = ''): void
+    {
+        if (!method_exists(parent::class, 'assertFileDoesNotExist')) {
+            parent::assertFileNotExists($filename, $message);
+            return;
+        }
+
+        parent::assertFileDoesNotExist($filename, $message);
+    }
 }
