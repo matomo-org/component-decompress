@@ -2,7 +2,7 @@
 
 Component providing several adapters to decompress files.
 
-[![Build Status](https://travis-ci.com/matomo-org/component-decompress.svg?branch=master)](https://travis-ci.com/matomo-org/component-decompress)
+[![PHPUnit](https://github.com/matomo-org/component-decompress/actions/workflows/phpunit.yml/badge.svg)](https://github.com/matomo-org/component-decompress/actions/workflows/phpunit.yml)
 
 It supports the following compression formats:
 
@@ -93,4 +93,4 @@ if ($extractedFiles === 0) {
 
 ## License
 
-The Decompress component is released under the [LGPL v3.0](http://choosealicense.com/licenses/lgpl-3.0/).
+The Decompress component is released under the [LGPL v3.0](https://choosealicense.com/licenses/lgpl-3.0/).
