@@ -54,7 +54,14 @@ class Gzip implements DecompressInterface
 
         $output = fopen($pathExtracted, 'w');
         while (!feof($file)) {
-            fwrite($output, fread($file, 1024 * 1024));
+            $content = fread($file, 1024 * 1024);
+
+            if (false === $content) {
+                $this->error = "fread failed";
+                return false;
+            }
+
+            fwrite($output, $content);
         }
         fclose($output);
 
