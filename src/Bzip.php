@@ -53,16 +53,20 @@ class Bzip implements DecompressInterface
         }
 
         $output = fopen($pathExtracted, 'w');
+
         while (!feof($file)) {
             $content = fread($file, 1024 * 1024);
 
             if (false === $content) {
                 $this->error = "fread failed";
+                fclose($output);
+                @unlink($pathExtracted);
                 return false;
             }
-            
+
             fwrite($output, $content);
         }
+
         fclose($output);
 
         $success = bzclose($file);
