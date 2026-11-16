@@ -69,9 +69,13 @@ class Bzip implements DecompressInterface
 
         fclose($output);
 
-        $success = bzclose($file);
-        if (false === $success) {
-            $this->error = "bzclose failed";
+        // bzclose() does not report read errors, and as of PHP 8.6 it returns false even after a successful read
+        $errorNumber = bzerrno($file);
+        $errorString = bzerrstr($file);
+        bzclose($file);
+
+        if ($errorNumber !== 0) {
+            $this->error = "bzip2 error: " . $errorString;
             return false;
         }
 
